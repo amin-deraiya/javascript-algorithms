@@ -33,6 +33,7 @@ have better cache locality as compared to linked lists.
 
 ## Pseudocode for Basic Operations
 
+***
 ### Insert
 
 ```text
@@ -49,6 +50,51 @@ Add(value)
   end if
 end Add
 ```
+```javascript
+// Define the Node class
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+// Define the singly linked list class
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  // Define the Add algorithm
+  Add(value) {
+    // Create a new node
+    let n = new Node(value);
+    // If the list is empty, set head and tail to the new node
+    if (this.head === null) {
+      this.head = n;
+      this.tail = n;
+    } else {
+      // Otherwise, add the new node to the end of the list
+      this.tail.next = n;
+      this.tail = n;
+    }
+  }
+}
+
+// Create a new instance of the SinglyLinkedList class
+let myList = new SinglyLinkedList();
+
+// Add some tasks to the list
+myList.Add('Buy groceries');
+myList.Add('Finish the project');
+myList.Add('Clean the house');
+
+// Now the list contains three tasks, and the tail is pointing to the last task
+console.log(myList.tail.value); // Output: "Finish the project"
+```
+***
+
 
 ```text
 Prepend(value)
@@ -62,6 +108,52 @@ Prepend(value)
  end
 end Prepend
 ```
+```javascript
+// Define the Node class
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+// Define the singly linked list class
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  // Define the Prepend algorithm
+  Prepend(value) {
+    // Create a new node
+    let n = new Node(value);
+
+    // Set the new node's next pointer to the current head of the list
+    n.next = this.head;
+
+    // Set the head of the list to the new node
+    this.head = n;
+
+    // If the list was empty, set the tail to the new node as well
+    if (this.tail === null) {
+      this.tail = n;
+    }
+  }
+}
+
+// Create a new instance of the SinglyLinkedList class
+let myFeed = new SinglyLinkedList();
+
+// Add some posts to the feed
+myFeed.Prepend('Just had the best coffee ever ☕️');
+myFeed.Prepend("Can't wait for the weekend 🎉");
+myFeed.Prepend('New year, new me 🥳');
+
+// Now the feed contains three posts, and the head is pointing to the most recent post
+console.log(myFeed.head.value); // Output: "New year, new me 🥳"
+```
+***
 
 ### Search
 
